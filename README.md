@@ -2,54 +2,46 @@
 
 Boutique guest house homepage for Maison Norelle (Gillitts, Hillcrest, KZN).
 
-## What changed in this revision
+## What's fixed in this revision
 
-**Header/logo overlap fixed.** Solinom's `.main-header__logo` uses a hardcoded
-`left: 44%` calibrated for their original 6-link + 2-link nav. With our
-shorter nav (3 links + 2 links) that offset landed the logo on top of the
-"Experience" link. Fixed by moving the logo to sit as a direct sibling
-between the two `<nav>` blocks inside `.main-header__middle`, centered via
-`left:50%` relative to that wrapper specifically — so it always sits exactly
-in the gap between the two link groups, regardless of how many links are on
-each side.
+**Colors are now Maison Norelle's actual brand palette, not Solinom's navy.**
+Solinom's stylesheet defines its own colors as real CSS custom properties at
+`:root` (e.g. `--solinom-text-dark: #15262C`). `style.css` redefines those
+same variables to the brand booklet's deep coffee-brown / warm gold palette
+— this recolors the entire real Solinom-powered header, hero, cards, and
+footer with zero markup changes, since every component already reads its
+color from these variables.
 
-**The dark empty strip above the hero photo, fixed.** Solinom's real CSS
-keeps `.main-slider-two__bg` and `.main-slider-two__title` hidden/transformed
-by default (`opacity:0`, scaled/shifted) and only reveals them once Owl
-Carousel adds an `active` class to the slide — timing-dependent on the
-plugin's own JS running successfully. That timing dependency was producing
-the blank gap. `style.css` now force-overrides both to always be visible,
-so the hero never shows blank regardless of carousel init timing.
+**Logo/nav overlap fixed for real this time.** Solinom's own CSS hardcodes
+`.main-header__logo` at `left: 44%`, calibrated for their original 6-link +
+2-link nav — with our 3-link + 2-link nav that landed the logo on top of
+"Experience". Fixed two ways together: the logo now sits as an actual
+sibling between the two `<nav>` blocks inside `.main-header__middle`, and
+`style.css` overrides it to `left:50%` relative to that wrapper specifically
+— so it's always centered in the gap between the two link groups.
 
-**The booking bar now has real functioning inputs, not static placeholders:**
-- Check-in / check-out use an actual **jQuery UI datepicker** (calendar
-  popup on click) — the same plugin Solinom uses.
+**Booking bar fits in the first viewport, with real functioning inputs:**
+- Check-in / check-out use an actual **jQuery UI datepicker**.
 - The Suite dropdown uses actual **bootstrap-select**, styled to match the
-  dark theme, instead of a plain unstyled native `<select>`.
-- Guests +/- stepper is wired up.
+  theme, instead of a plain unstyled native `<select>`.
+- The dark empty gap above the hero photo is fixed — Solinom's CSS keeps
+  the background/title hidden until Owl Carousel's JS adds an `active`
+  class (timing-dependent); `style.css` forces both visible so it never
+  shows blank regardless of plugin timing.
 
-**Hillside Highlights** now uses Solinom's real `feature-three` section
-markup and CSS verbatim (the "Featured Amenities" card style: icon circle,
-title, text, Read More link) — adapted to 3 cards instead of 4, content
-swapped for Springside / Shongweni / Giba Gorge. Icons are Font Awesome
-(Solinom's own icon font is proprietary and wasn't redistributed); the
-decorative corner-frame and hover-shape PNGs are also proprietary assets
-and were left out — the cards still carry the correct background, icon
-circle, spacing, and hover color-shift from the real CSS.
+**Hillside Highlights** uses Solinom's real `feature-three` section markup
+verbatim (the "Featured Amenities" card style), adapted to 3 cards for
+Springside / Shongweni / Giba Gorge.
 
-**Main Facilities** uses the same real `feature-three__item` card style,
-kept **full width** (edge-to-edge, no side container) per request, via a
-small `.facilities-full` wrapper in `style.css`.
+**Main Facilities** uses the same real card style, kept full-width
+edge-to-edge.
 
-**Footer** replaced with Solinom's real `main-footer` markup verbatim
-(About + newsletter + socials / Explore links / Contact), content swapped
-for Maison Norelle. The proprietary decorative footer background shape and
-app-store badge images were left out (not relevant here anyway).
+**Footer** is Solinom's real `main-footer` markup verbatim, content
+swapped for Maison Norelle.
 
 **Real mobile nav + search popup** — Solinom's actual off-canvas mobile
-menu (`.mobile-nav__wrapper`) and full-screen search overlay
-(`.search-popup`) are now included, using solinom.css's own real toggle
-classes (`.expanded` / `.active`).
+menu and full-screen search overlay are included, using solinom.css's own
+toggle classes (`.expanded` / `.active`).
 
 ## Structure
 
@@ -59,13 +51,22 @@ maison-norelle-website/
 ├── assets/
 │   ├── css/
 │   │   ├── solinom.css   ← the real template stylesheet, unmodified
-│   │   └── style.css     ← integration fixes + our styles for lower sections
+│   │   └── style.css     ← brand color override + integration fixes + lower-section styles
 │   ├── js/
 │   │   ├── vendor-init.js ← Owl Carousel / datepicker / bootstrap-select / WOW / mobile nav / search
 │   │   └── script.js      ← GSAP scroll reveals for the lower sections
 │   └── images/logo.jpeg
 └── README.md
 ```
+
+## About the "91% CSS" on GitHub
+
+That's just GitHub's language-breakdown stat — it counts raw bytes per file
+type, and `solinom.css` (the real, complete template stylesheet) alone is
+about 450KB of CSS, dwarfing the HTML/JS in byte count. It has nothing to do
+with how the site actually works or renders, and isn't limiting anything —
+a heavy real-world CSS framework file just naturally skews that percentage.
+Nothing to fix there.
 
 ## Known simplifications
 
@@ -75,8 +76,7 @@ maison-norelle-website/
   script wasn't part of the files pulled in, so this gets a shadow-on-scroll
   instead. The header is visible immediately on load either way.
 - Decorative shape/frame PNGs (corner brackets, hover glows, footer
-  background art) are Solinom's own proprietary artwork and were left out;
-  layout, spacing, and color from the real CSS are otherwise intact.
+  background art) are Solinom's own proprietary artwork and were left out.
 - Photography is Unsplash placeholders — swap for real property photos
   whenever ready.
 

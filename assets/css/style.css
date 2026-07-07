@@ -1,23 +1,48 @@
 :root{
-  /* ===== Solinom-derived palette (navy/gold) ===== */
-  --navy-deep:#101D22;
-  --navy:#15262C;
-  --navy-mid:#1C2F36;
-  --navy-card:#1C2F36;
-  --navy-card-hover:#20363E;
-  --cream:#FFFFFF;
-  --cream-dim:rgba(255,255,255,0.68);
-  --cream-muted:rgba(255,255,255,0.42);
-  --gold:#CBA36B;
-  --gold-soft:#DDBF8D;
-  --gold-line:rgba(203,163,107,0.35);
-  --border:rgba(255,255,255,0.08);
+  /* ===== Maison Norelle brand palette (from the brand booklet) ===== */
+  --navy-deep:#1C1108;    /* deepest brown-black, body bg */
+  --navy:#2E1C0F;         /* section-alt bg */
+  --navy-mid:#3A2413;     /* card bg */
+  --navy-card:#3A2413;
+  --navy-card-hover:#43301C;
+  --cream:#F7F2EA;
+  --cream-dim:rgba(247,242,234,0.72);
+  --cream-muted:rgba(247,242,234,0.45);
+  --gold:#C9A15D;
+  --gold-soft:#DDBB85;
+  --gold-line:rgba(201,161,93,0.35);
+  --border:rgba(247,242,234,0.1);
 
   --font-display:'Fraunces', serif;
   --font-serif:'Cormorant Garamond', serif;
   --font-body:'Outfit', sans-serif;
 
   --max-w:1240px;
+}
+
+/* =====================================================================
+   MAISON NORELLE BRAND COLORS — override Solinom's own real CSS variables
+   Solinom's stylesheet defines every color as a CSS custom property at
+   :root (e.g. --solinom-text-dark: #15262C). Redefining those same
+   variables here (loaded after solinom.css) recolors the ENTIRE real
+   Solinom-powered header/hero/cards/footer to Maison Norelle's brown/gold
+   brand, with no markup changes needed.
+   ===================================================================== */
+:root{
+  --solinom-text: #1C1108;
+  --solinom-text-rgb: 28, 17, 8;
+  --solinom-text-dark: #2E1C0F;
+  --solinom-text-dark-rgb: 46, 28, 15;
+  --solinom-base: #C9A15D;
+  --solinom-base-rgb: 201, 161, 93;
+  --solinom-gray: #3A2413;
+  --solinom-gray-rgb: 58, 36, 19;
+  --solinom-gray2: #43301C;
+  --solinom-gray2-rgb: 67, 48, 28;
+  --solinom-white: #F7F2EA;
+  --solinom-white-rgb: 247, 242, 234;
+  --solinom-border-color: #4A3520;
+  --solinom-border-color-rgb: 74, 53, 32;
 }
 
 *,*::before,*::after{box-sizing:border-box;}
@@ -37,23 +62,40 @@ button{cursor:pointer;border:none;background:none;font:inherit;}
 .mn-container{max-width:var(--max-w);margin:0 auto;padding:0 32px;}
 
 /* ===== Integration polish: real Solinom header + our content ===== */
-/* Simple mobile nav fallback (the source template's own off-canvas mobile
-   menu markup wasn't pulled in, since it lives in a separate large block
-   of the original file — this is a minimal equivalent). */
-@media (max-width: 1199px) {
-  .main-header--two .main-header__middle{ display:none; }
-  .main-header--two .main-header__middle.mobile-nav-visible{
-    display:flex; flex-direction:column; align-items:flex-start; gap:4px !important;
-    position:absolute; top:100%; left:0; right:0;
-    background:var(--navy-mid, #1C2F36); padding:20px 24px; z-index:200;
-    border-top:1px solid var(--gold-line, rgba(203,163,107,0.35));
-  }
-  .main-header--two .main-header__middle.mobile-nav-visible .main-menu__list{
-    flex-direction:column; align-items:flex-start; gap:4px;
-  }
-}
+
 /* Keep the real header visible immediately, with a soft shadow once scrolled */
 .main-header{ transition: box-shadow 0.3s ease; }
+
+/* On smaller screens, hide the desktop nav groups entirely — the real
+   off-canvas .mobile-nav__wrapper (wired up in vendor-init.js via the
+   .expanded toggle class) is the actual mobile menu. */
+@media (max-width: 1199px) {
+  .main-header--two .main-header__nav{ display:none; }
+}
+
+/* ===== LOGO / NAV FIX =====
+   Solinom's own CSS hardcodes .main-header__logo at left:44%, calibrated
+   for their original 6-link + 2-link nav. Our shorter nav (3 + 2 links)
+   made that overlap the "Experience" link. Centering the logo specifically
+   within .main-header__middle (its direct parent here) — rather than the
+   whole header — guarantees it always sits in the gap between the two
+   nav groups, regardless of how many links are on each side. */
+.main-header--two .main-header__middle{
+  position:relative;
+}
+.main-header--two .main-header__logo{
+  left:50% !important;
+  transform:translateX(-50%) !important;
+}
+
+/* ===== HERO RELIABILITY OVERRIDE =====
+   Solinom's real CSS keeps .main-slider-two__bg / __title hidden/transformed
+   by default and only reveals them once Owl Carousel adds "active" to the
+   wrapping .owl-item — timing-dependent on the plugin's own JS. Forcing
+   both visible/untransformed guarantees the hero never shows blank or
+   mis-cropped, regardless of carousel init timing. */
+.main-slider-two__bg{ transform:none !important; opacity:1 !important; }
+.main-slider-two__title{ opacity:1 !important; transform:none !important; }
 
 h1,h2,h3,h4{font-family:var(--font-display);font-weight:500;letter-spacing:-0.01em;}
 
@@ -249,18 +291,9 @@ section{padding:130px 0;position:relative;}
 
 @media (max-width:900px){.testimonials-grid{grid-template-columns:1fr;gap:80px;}}
 
-/* ===== HERO RELIABILITY OVERRIDE =====
-   Solinom's real CSS keeps .main-slider-two__bg / __title hidden/transformed
-   by default and only reveals them once Owl Carousel adds "active" to the
-   wrapping .owl-item — timing-dependent on the plugin's own JS. Forcing
-   both visible/untransformed guarantees the hero never shows blank or
-   mis-cropped, regardless of carousel init timing. */
-.main-slider-two__bg{ transform:none !important; opacity:1 !important; }
-.main-slider-two__title{ opacity:1 !important; transform:none !important; }
-
 /* ===== FULL-WIDTH FACILITIES (Featured Amenities card style, edge to edge) ===== */
 .facilities-full{
-  background-color: var(--solinom-text-dark, #15262C);
+  background-color: var(--solinom-text-dark);
   padding:0;
 }
 .facilities-full__grid{

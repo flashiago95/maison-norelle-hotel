@@ -25,12 +25,12 @@ $(document).ready(function () {
 
   // Guests quantity stepper
   $('.quantity-box .add').on('click', function () {
-    const input = $(this).siblings('input');
+    var input = $(this).siblings('input');
     input.val(parseInt(input.val() || 0) + 1);
   });
   $('.quantity-box .sub').on('click', function () {
-    const input = $(this).siblings('input');
-    const val = parseInt(input.val() || 0);
+    var input = $(this).siblings('input');
+    var val = parseInt(input.val() || 0);
     if (val > 1) input.val(val - 1);
   });
 
@@ -49,8 +49,8 @@ $(document).ready(function () {
 new WOW().init();
 
 // Header shadow once page scrolls past the hero
-window.addEventListener('scroll', () => {
-  const header = document.querySelector('.main-header');
+window.addEventListener('scroll', function () {
+  var header = document.querySelector('.main-header');
   if (header) {
     header.style.boxShadow = window.scrollY > 60 ? '0 12px 30px rgba(0,0,0,0.35)' : 'none';
   }

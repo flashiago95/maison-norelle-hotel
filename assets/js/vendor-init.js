@@ -1,5 +1,6 @@
-// ===== Real Solinom vendor inits (Owl Carousel + WOW.js) =====
+// ===== Real Solinom vendor inits =====
 $(document).ready(function () {
+  // Hero slider — Owl Carousel, same as the real template
   $('#heroCarousel').owlCarousel({
     items: 1,
     loop: true,
@@ -13,8 +14,16 @@ $(document).ready(function () {
     margin: 0
   });
 
-  // Guests quantity stepper (the real template wires this via its own main.js;
-  // reimplemented here since we're not pulling that proprietary file in)
+  // Real jQuery UI datepicker on the check-in / check-out fields
+  $('.solinom-datepicker').datepicker({
+    dateFormat: 'dd/mm/yy',
+    minDate: 0
+  });
+
+  // Real bootstrap-select styled dropdown for the Suite selector
+  $('.selectpicker').selectpicker();
+
+  // Guests quantity stepper
   $('.quantity-box .add').on('click', function () {
     const input = $(this).siblings('input');
     input.val(parseInt(input.val() || 0) + 1);
@@ -25,9 +34,15 @@ $(document).ready(function () {
     if (val > 1) input.val(val - 1);
   });
 
-  // Mobile nav toggle (simple show/hide, real template's is more elaborate)
+  // Real mobile off-canvas nav (uses solinom.css's own .expanded toggle class)
   $('.mobile-nav__toggler').on('click', function () {
-    $('.main-header__middle').toggleClass('mobile-nav-visible');
+    $('.mobile-nav__wrapper').toggleClass('expanded');
+  });
+
+  // Real search popup overlay (uses solinom.css's own .active toggle class)
+  $('.search-toggler').on('click', function (e) {
+    e.preventDefault();
+    $('.search-popup').toggleClass('active');
   });
 });
 

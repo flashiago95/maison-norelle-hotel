@@ -9371,8 +9371,8 @@ body.megamenu-popup-active .mobile-nav__content {
   }
 }
 .cta-three__funfact {
-  width: 178px;
-  height: 178px;
+  width: 200px;
+  height: 200px;
   border-radius: 50%;
   background-color: var(--solinom-text, #101D22);
   display: flex;
@@ -9380,25 +9380,30 @@ body.megamenu-popup-active .mobile-nav__content {
   justify-content: center;
   flex-direction: column;
   position: relative;
+  padding: 20px;
+  box-sizing: border-box;
+  text-align: center;
 }
 .cta-three__funfact__top {
   display: block;
   font-style: normal;
   font-weight: 500;
-  font-size: 24.2977px;
-  line-height: 109%;
+  font-size: 16px;
+  line-height: 130%;
   color: var(--solinom-base, #C9A227);
   text-transform: capitalize;
+  max-width: 130px;
 }
 .cta-three__funfact__text {
   display: flex;
   text-align: center;
   font-style: normal;
   font-weight: 700;
-  font-size: 49.8653px;
+  font-size: 44px;
   line-height: 114%;
   text-transform: uppercase;
   color: var(--solinom-white, #fff);
+  margin: 4px 0;
 }
 .cta-three__funfact__text span {
   color: inherit;

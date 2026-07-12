@@ -362,6 +362,18 @@ h6 {
 p {
   color: var(--solinom-text-gray, #7D8B90);
 }
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
 @media (max-width: 575px) {
   p br {
     display: none;
@@ -17736,7 +17748,7 @@ body.megamenu-popup-active .mobile-nav__content {
   line-height: 25px;
   margin-bottom: 18px;
   padding-bottom: 0;
-  color: var(--solinom-white, #fff);
+  color: var(--solinom-text-dark, #2A1810);
   text-transform: capitalize;
 }
 .feature-three__item__title a {
@@ -19636,10 +19648,16 @@ body.boxed-wrapper .page-wrapper {
   background: linear-gradient(160deg, #2A1810 0%, #3E2415 55%, #2A1810 100%);
 }
 .feature-three {
-  background: linear-gradient(160deg, #2A1810 0%, #3E2415 100%);
+  background: linear-gradient(160deg, #F6EAD4 0%, #E9D2A6 100%);
+}
+.feature-three .sec-title__title {
+  color: var(--solinom-text-dark, #2A1810);
+}
+.feature-three .sec-title__tagline {
+  color: var(--solinom-gray2, #4A3625);
 }
 .feature-three__item {
-  background: linear-gradient(160deg, #3E2415 0%, #5C4326 100%);
+  background: linear-gradient(160deg, #FBF6EC 0%, #EAD5B0 100%);
 }
 .benefit-two {
   background: linear-gradient(160deg, #2A1810 0%, #3E2415 100%);

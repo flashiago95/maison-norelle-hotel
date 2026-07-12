@@ -23,12 +23,12 @@
   --solinom-text-dark-rgb: 42, 24, 16;
   --solinom-text-gray: #7D8B90;
   --solinom-text-gray-rgb: 125, 139, 144;
-  --solinom-base: #C9A227;
-  --solinom-base-rgb: 201, 162, 39;
-  --solinom-gray: #3E2415;
-  --solinom-gray-rgb: 62, 36, 21;
-  --solinom-gray2: #5C4326;
-  --solinom-gray2-rgb: 92, 67, 38;
+  --solinom-base: #C4A574;
+  --solinom-base-rgb: 196, 165, 116;
+  --solinom-gray: #2B1F17;
+  --solinom-gray-rgb: 43, 31, 23;
+  --solinom-gray2: #4A3625;
+  --solinom-gray2-rgb: 74, 54, 37;
   --solinom-white: #fff;
   --solinom-white-rgb: 255, 255, 255;
   --solinom-black: #000;
@@ -37,10 +37,10 @@
   --solinom-border-color-rgb: 250, 246, 240;
   --solinom-letter-space: 0.1em;
   --solinom-letter-space-xl: 0.2em;
-  --solinom-black: #1c1a1d;
-  --solinom-black-rgb: 28, 26, 29;
-  --solinom-black2: #141215;
-  --solinom-black2-rgb: 20, 18, 21;
+  --solinom-black: #2B1F17;
+  --solinom-black-rgb: 43, 31, 23;
+  --solinom-black2: #241A13;
+  --solinom-black2-rgb: 36, 26, 19;
 }
 
 /*--------------------------------------------------------------

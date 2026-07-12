@@ -315,6 +315,7 @@ body {
   font-size: 16px;
   line-height: 2.125;
   font-weight: 500;
+  background: linear-gradient(180deg, #FBF6EC 0%, #F3E4CC 45%, #FBF6EC 100%);
 }
 
 body.locked {
@@ -18680,7 +18681,7 @@ body.megamenu-popup-active .mobile-nav__content {
 .about-two {
   padding: 120px 0px;
   position: relative;
-  background-color: #ffffff;
+  background-color: transparent;
   z-index: 1;
 }
 @media (max-width: 991px) {

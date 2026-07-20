@@ -6948,15 +6948,18 @@ body.megamenu-popup-active .mobile-nav__content {
 --------------------------------------------------------------*/
 /**Room Details**/
 .room-details {
+  padding-top: 120px;
   padding-bottom: 120px;
 }
 @media (max-width: 991px) {
   .room-details {
+    padding-top: 100px;
     padding-bottom: 100px;
   }
 }
 @media (max-width: 767px) {
   .room-details {
+    padding-top: 80px;
     padding-bottom: 80px;
   }
 }
